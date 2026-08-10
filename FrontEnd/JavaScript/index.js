@@ -55,6 +55,8 @@ getCategories().then(categories => {
     btnAll.textContent = "Tous";
     btnAll.classList.add("filtre");
 
+// Etape 4 : Rendez les filtres fonctionnels
+
     btnAll.addEventListener("click", () => {
         displayWorks(works);
         setActiveButton(btnAll);

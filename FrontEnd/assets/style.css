@@ -141,6 +141,7 @@ li:hover {
 .filtres-container {
 	display: flex;
 	justify-content: center;
+	flex-wrap: wrap;
 	gap: 10px;
 	margin-bottom: 30px;
 }
@@ -155,6 +156,7 @@ li:hover {
 	font-family: 'Syne', sans-serif;
 	cursor: pointer;
 	transition: all 0.3s ease;
+	white-space: nowrap;
 }
 
 .filtre:hover {
