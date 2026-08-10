@@ -137,6 +137,36 @@ li:hover {
 	width: 100%;
 
 }
+
+.filtres-container {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 30px;
+}
+
+.filtre {
+	border: 1px solid #1D6154;
+	color: #1D6154;
+	background-color: white;
+	padding: 8px 20px;
+	border-radius: 20px;
+	font-size: 16px;
+	font-family: 'Syne', sans-serif;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.filtre:hover {
+	background-color: #1D6154;
+	color: white;
+}
+
+.filtre:active {
+	background-color: #1D6154;
+	color: white;
+}
+
 #contact {
 	width: 50%;
 margin: auto;
