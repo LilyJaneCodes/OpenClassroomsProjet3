@@ -82,3 +82,39 @@ getCategories().then(categories => {
         filtresContainer.appendChild(btn);
     });
 });
+
+// Etape 5.3 : Page de connexion : Affichez la page d'accueil lors d'une connexion
+
+const token = localStorage.getItem("token");
+
+if (token) {
+    // Mode admin activé
+    document.body.classList.add("admin-mode");
+    document.querySelector(".filtres-container").style.display = "none";
+
+    // Remplacer "login" par "logout"
+    const loginLink = document.querySelector("nav ul li:nth-child(3)");
+    loginLink.textContent = "logout";
+    loginLink.addEventListener("click", () => {
+        localStorage.removeItem("token");
+        window.location.reload();
+    });
+
+    // Afficher le bandeau noir
+    const adminBanner = document.createElement("div");
+    adminBanner.classList.add("admin-banner");
+    adminBanner.innerHTML = `
+        <i class="fa-regular fa-pen-to-square"></i>
+        <p>Mode édition</p>
+    `;
+    document.body.prepend(adminBanner);
+
+    // Afficher le bouton "modifier"
+    const editButton = document.createElement("button");
+    editButton.classList.add("edit-button");
+    editButton.innerHTML = `
+        <i class="fa-regular fa-pen-to-square"></i>
+        <span>modifier</span>
+    `;
+    document.querySelector(".portfolio-title").appendChild(editButton);
+}

@@ -128,6 +128,13 @@ nav img {
 	object-fit: contain;
 }
 
+nav a {
+    color: inherit;          /* même couleur que le li */
+    text-decoration: none;   /* enlève le soulignement */
+    font-family: inherit;    /* même police */
+    font-size: inherit;      /* même taille */
+}
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -207,6 +214,7 @@ nav img {
 	border-radius: 20px;
 	font-size: 16px;
 	font-family: 'Syne', sans-serif;
+	font-weight: 700;
 	cursor: pointer;
 	transition: all 0.3s ease;
 	white-space: nowrap;
@@ -263,7 +271,7 @@ nav img {
 
 input[type="submit"]{
 	font-family: 'Syne';
-	font-weight: 400;
+	font-weight: 700;
 	color: white;
 	background-color: #1D6154;
 	margin : 3em auto ;
@@ -359,4 +367,57 @@ footer nav ul {
 .error {
     color: red;
     margin-top: 20px;
+}
+
+/** Etape 5.3 : Page de connexion : Affichez la page d'accueil lors d'une connexion **/
+
+.admin-banner {
+	background: black;
+	color: white;
+	padding: 20px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	font-size: 14px;
+}
+
+.edit-button {
+	background: none;
+	border: none;
+	color: black;
+	font-size: 14px;
+	font-family: 'Syne', sans-serif;
+	font-weight: 400;
+	cursor: pointer;
+	display: flex;
+	align-items: flex-end;
+	gap: 8px;
+}
+
+.edit-button span {
+    position: relative;
+    top: 2px; /* ⭐ descend légèrement le texte */
+}
+
+.edit-button i {
+    font-size: 18px;
+}
+
+.portfolio-title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 25px;
+	width: 100%;
+}
+
+.portfolio-title-text {
+    font-weight: 700;
+}
+
+/* Plus d'espace sous le titre en mode admin */
+.admin-mode #portfolio .portfolio-title {
+    margin-bottom: 100px;
 }
