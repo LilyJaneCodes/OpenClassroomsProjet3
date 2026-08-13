@@ -355,3 +355,8 @@ footer nav ul {
     color: #3D3D3D;
 	margin-top: 30px;
 }
+
+.error {
+    color: red;
+    margin-top: 20px;
+}

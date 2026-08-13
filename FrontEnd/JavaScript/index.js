@@ -82,4 +82,3 @@ getCategories().then(categories => {
         filtresContainer.appendChild(btn);
     });
 });
-
