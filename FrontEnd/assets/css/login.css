@@ -1,0 +1,66 @@
+/* CONTAINER */
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+/* TITRE */
+.login-container h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+/* FORMULAIRE */
+#login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#login-form label {
+    text-align: left;
+    font-weight: 400;
+	margin-bottom: 7px;
+	line-height: 1;
+}
+
+#login-form input {
+    height: 50px;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0px 4px 14px rgba(0,0,0,0.1);
+    padding: 0 10px;
+	margin-top: 0;
+	margin-bottom: 25px;
+}
+
+/* BOUTON */
+#login-form button {
+    background-color: #1D6154;
+    color: white;
+	border: none;
+	border-radius: 50px;
+    height: 45px;
+	width: 200px; /* bouton plus petit */
+    font-size: 1.1em;
+	font-family: 'Syne', sans-serif;
+    cursor: pointer;
+    margin: 20px auto 20px auto; /* centré */
+}
+
+#login-form button:hover {
+    background-color: #0e3c34;
+}
+
+/* LIEN MOT DE PASSE OUBLIE */
+.forgot-password {
+    font-size: 1rem;
+	font-weight: 600;
+    color: #3D3D3D;
+	margin-top: 30px;
+}
+
+.error {
+    color: red;
+    margin-top: 20px;
+}

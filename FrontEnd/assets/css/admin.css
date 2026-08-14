@@ -1,0 +1,50 @@
+.admin-banner {
+	background: black;
+	color: white;
+	padding: 20px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	font-size: 14px;
+}
+
+.edit-button {
+	background: none;
+	border: none;
+	color: black;
+	font-size: 14px;
+	font-family: 'Syne', sans-serif;
+	font-weight: 400;
+	cursor: pointer;
+	display: flex;
+	align-items: flex-end;
+	gap: 8px;
+}
+
+.edit-button span {
+    position: relative;
+    top: 2px; /* ⭐ descend légèrement le texte */
+}
+
+.edit-button i {
+    font-size: 18px;
+}
+
+.portfolio-title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 25px;
+	width: 100%;
+}
+
+.portfolio-title-text {
+    font-weight: 700;
+}
+
+/* Plus d'espace sous le titre en mode admin */
+.admin-mode #portfolio .portfolio-title {
+    margin-bottom: 100px;
+}
