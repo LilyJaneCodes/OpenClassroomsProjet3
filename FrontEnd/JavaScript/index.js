@@ -80,8 +80,10 @@ getCategories().then(categories => {
         });
 
         filtresContainer.appendChild(btn);
-    });
-});
+
+    }); // <-- fin du forEach
+
+}); // <-- fin du getCategories().then()
 
 // Etape 5.3 : Page de connexion : Affichez la page d'accueil lors d'une connexion
 
@@ -117,4 +119,9 @@ if (token) {
         <span>modifier</span>
     `;
     document.querySelector(".portfolio-title").appendChild(editButton);
+
+    // Etape 6 : Ajoutez la modale (la structure)
+    editButton.addEventListener("click", () => {
+        createModal();
+    });
 }
