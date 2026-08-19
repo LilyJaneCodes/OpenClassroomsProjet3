@@ -15,7 +15,7 @@ function createModal() {
     const modalContainer = document.createElement('div');
     modalContainer.classList.add('modal-container');
 
-    // Ajout du contenu HTML
+    // 3. Ajout du contenu HTML
     modalContainer.innerHTML = `
         <div class ="modal-header">
             <span class="btn-back hidden"><i class="fa-solid fa-arrow-left"></i></span>
@@ -57,30 +57,30 @@ function createModal() {
         </div>
     `;
 
-    // 3. Ajouter le conteneur dans l'overlay
+    // 4. Ajouter le conteneur dans l'overlay
     overlay.appendChild(modalContainer);
 
-    // 4. Ajouter l'overlay au body
+    // 5. Ajouter l'overlay au body
     document.body.appendChild(overlay);
 
     loadModalGallery(modalContainer);
 
     /// LISTENERS POUR FERMER ///
 
-    // Fermer en cliquant sur la croix
+    // 6. Fermer en cliquant sur la croix
     const closeBtn = modalContainer.querySelector('.modal-close');
     closeBtn.addEventListener('click', () => {
         overlay.remove();
     });
 
-    // Fermer en cliquant en dehors de la modale
+    // 7. Fermer en cliquant en dehors de la modale
     overlay.addEventListener('click', (e) => {
         if (e.target === overlay) {
             overlay.remove();
         }
     });
 
-    // Ajout photo
+    // 8. Ajout photo
 
     const btnAddPhoto = modalContainer.querySelector('.add-photo-btn');
     const galleryZone = modalContainer.querySelector('.modal-gallery');
@@ -97,7 +97,7 @@ function createModal() {
         btnBack.classList.remove('hidden'); // affiche la flèche retour
     });
 
-    // Flèche retour
+    // 9. Flèche retour
 
     btnBack.addEventListener('click', () => {
         formZone.classList.add('hidden');
@@ -107,7 +107,7 @@ function createModal() {
         btnBack.classList.add('hidden'); // cacher la flèche retour
     });
 
-    // --- ACCESSIBILITÉ : Tab + Entrée pour naviguer --- //
+    // 10. --- ACCESSIBILITÉ : Tab + Entrée pour naviguer --- //
     document.addEventListener("keydown", (e) => {
 
         // Si la modale n'est pas ouverte, on ne fait rien
@@ -140,15 +140,6 @@ function createModal() {
                 modalTitle.textContent = "Ajout photo";
                 btnBack.classList.remove('hidden');
             }
-
-            // Si on est sur la flèche retour
-            if (document.activeElement === btnBack) {
-                formZone.classList.add('hidden');
-                galleryZone.classList.remove('hidden');
-                footer.classList.remove('hidden');
-                modalTitle.textContent = "Galerie photo";
-                btnBack.classList.add('hidden');
-            }
         }
     });
 }
@@ -156,6 +147,7 @@ function createModal() {
 // Fonction pour charger les travaux
 
 async function loadModalGallery(modalContainer) {
+
     const gallery = modalContainer.querySelector('.modal-gallery');
     gallery.innerHTML = ""; // On vide avant de remplir
 
@@ -164,6 +156,7 @@ async function loadModalGallery(modalContainer) {
         const works = await response.json();
 
         works.forEach(work => {
+
             const figure = document.createElement('figure');
             figure.classList.add('modal-figure');
 
@@ -174,6 +167,11 @@ async function loadModalGallery(modalContainer) {
             const deleteBtn = document.createElement('button');
             deleteBtn.classList.add('delete-work-btn');
             deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
+            deleteBtn.dataset.id = work.id;
+
+            deleteBtn.addEventListener("click", () => {
+                deleteWork(work.id, figure);
+            })
 
             figure.appendChild(img);
             figure.appendChild(deleteBtn);
@@ -182,5 +180,34 @@ async function loadModalGallery(modalContainer) {
 
     }   catch (error) {
         console.error("Erreur lors du chargement des travaux :", error);
+    }
+}
+
+// Etape 7 : Supprimez des travaux existants
+
+async function deleteWork(id, figure) {
+
+    const token = localStorage.getItem("token");
+
+    const response = await fetch(`http://localhost:5678/api/works/${id}`, {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    if (response.ok) {
+        console.log("Suppression réussie !");
+
+        // Supprimer dans la modale
+        figure.remove();
+
+        // Supprimer dans la galerie principale
+        const mainFigure = document.querySelector(`figure[data-id="${id}"]`);
+        if (mainFigure) {
+            mainFigure.remove();
+        }
+    } else {
+        console.error("Échec de la suppresssion :", response.status);
     }
 }
