@@ -267,9 +267,9 @@ function createModal() {
         sendNewWork(formData);
     });
 
-    // ETAPE 8 - FAIRE UN POST/works
+    // ETAPE 8.1 - FAIRE UN POST/works
 
-        function sendNewWork(formData) {
+    function sendNewWork(formData) {
         const token = localStorage.getItem("token");
 
         fetch("http://localhost:5678/api/works", {
@@ -280,17 +280,41 @@ function createModal() {
             },
             body: formData
         })
+
         .then(response => {
             if (!response.ok) {
                 throw new Error("Erreur lors de l'envoi du projet");
             }
             return response.json();
         })
-        .then(data => {
-            console.log("Projet ajouté :", data);
-            // Rafraîchir la page pour voir le nouveau projet
-            window.location.reload();
-        })
+        //** ETAPE 8.2 : AFFICHER DYNAMIQUEMENT LA NOUVELLE IMAGE DE LA MODALE **//
+            .then(newWork => {
+        console.log("Projet ajouté :", newWork);
+
+        // Ajout dynamique dans la galerie principale
+        addWorkToGallery(newWork);
+
+        // Ajout dynamique dans la modale
+        addWorkToModal(newWork);
+
+        // Reset du formulaire
+        addPhotoForm.reset();
+        previewImage.classList.add("hidden");
+
+        // Retour à la galerie de la modale
+        const galleryZone = modalContainer.querySelector('.modal-gallery');
+        const formZone = modalContainer.querySelector('.modal-form');
+        const footer = modalContainer.querySelector('.modal-footer');
+        const modalTitle = modalContainer.querySelector('.modal-header h3');
+        const btnBack = modalContainer.querySelector('.btn-back');
+
+        formZone.classList.add('hidden');
+        galleryZone.classList.remove('hidden');
+        footer.classList.remove('hidden');
+        modalTitle.textContent = "Galerie photo";
+        btnBack.classList.add('hidden');
+    })
+
         .catch(error => {
             console.error("Erreur envoi projet :", error);
             formError.textContent = "Impossible d'envoyer le projet.";
@@ -322,9 +346,9 @@ async function loadModalGallery(modalContainer) {
             const deleteBtn = document.createElement('button');
             deleteBtn.classList.add('delete-work-btn');
             deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
-            deleteBtn.dataset.id = work.id; // Ajout à l'Etape 7
+            deleteBtn.dataset.id = work.id;
 
-            deleteBtn.addEventListener("click", () => { // Ajout à l'Etape 7
+            deleteBtn.addEventListener("click", () => {
                 deleteWork(work.id, figure);
             })
 
@@ -365,5 +389,60 @@ async function deleteWork(id, figure) {
     }
 }
 
-//** ETAPE 8.2 : TRAITEMENT DE LA REPONSE DE L'API POUR AFFICHER DYNAMIQUEMENT LA NOUVELLE IMAGE DE LA MODALE **/
+//** ETAPE 8.2 : AFFICHER DYNAMIQUEMENT LA NOUVELLE IMAGE DE LA MODALE **//
 
+// 1. Créer un élément dans la galerie principale
+function createWorkElement(work) {
+    const figure = document.createElement("figure");
+    figure.dataset.id = work.id;
+
+    const img = document.createElement("img");
+    img.src = work.imageUrl;
+    img.alt = work.title;
+
+    const figcaption = document.createElement("figcaption");
+    figcaption.textContent = work.title;
+
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+
+    return figure;
+}
+
+// Ajouter dans la galerie principale
+function addWorkToGallery(work) {
+    const gallery = document.querySelector(".gallery");
+    const element = createWorkElement(work);
+    gallery.appendChild(element);
+}
+
+// 2. Créer un élément dans la modale
+function createModalWorkElement(work) {
+    const figure = document.createElement("figure");
+    figure.classList.add("modal-figure");
+    figure.dataset.id = work.id;
+
+    const img = document.createElement("img");
+    img.src = work.imageUrl;
+    img.alt = work.title;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("delete-work-btn");
+    deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
+
+    deleteBtn.addEventListener("click", () => {
+        deleteWork(work.id, figure);
+    });
+
+    figure.appendChild(img);
+    figure.appendChild(deleteBtn);
+
+    return figure;
+}
+
+// Ajouter dans la galerie de la modale
+function addWorkToModal(work) {
+    const modalGallery = document.querySelector(".modal-gallery");
+    const element = createModalWorkElement(work);
+    modalGallery.appendChild(element);
+}
