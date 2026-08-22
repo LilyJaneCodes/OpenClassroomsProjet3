@@ -12,6 +12,8 @@ function displayWorks(works) {
     works.forEach(work => {
         const figure = document.createElement("figure");
 
+        figure.dataset.id = work.id;
+
         const img = document.createElement("img");
         img.src = work.imageUrl;
         img.alt = work.title;
@@ -26,6 +28,10 @@ function displayWorks(works) {
 }
 
 let works = [];
+
+function removeWorkFromWorks(id) {
+    works = works.filter(work => work.id !== id);
+}
 
 getWorks().then(data => {
     works = data;
@@ -80,8 +86,10 @@ getCategories().then(categories => {
         });
 
         filtresContainer.appendChild(btn);
-    });
-});
+
+    }); // <-- fin du forEach
+
+}); // <-- fin du getCategories().then()
 
 // Etape 5.3 : Page de connexion : Affichez la page d'accueil lors d'une connexion
 
@@ -117,4 +125,29 @@ if (token) {
         <span>modifier</span>
     `;
     document.querySelector(".portfolio-title").appendChild(editButton);
+
+    // Etape 6 : Ajoutez la modale (la structure)
+    editButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        // Si une modale existe déjà, on ne fait rien
+        if (document.querySelector('.modal-overlay')) {
+            return;
+        }
+        
+        createModal();
+    });
+}
+
+///////////////DEFILEMENT VERS LA SECTION CONTACT DE LA PAGE INDEX DEPUIS LA PAGE LOGIN//////////////
+const sectionToScroll = window.location.hash.substring(1);
+if (sectionToScroll) {
+	setTimeout(function() {
+		const targetSection = document.getElementById(sectionToScroll);
+		if (targetSection) {
+			window.scrollTo({
+				top: targetSection.offsetTop,
+			});
+		}
+	}, 100);
 }

@@ -54,10 +54,10 @@
 
 /* LIEN MOT DE PASSE OUBLIE */
 .forgot-password {
-    font-size: 1rem;
-	font-weight: 600;
+    font-size: 15px;
+	font-weight: 500;
     color: #3D3D3D;
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
 .error {

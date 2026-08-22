@@ -1,0 +1,259 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container {
+    width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    font-size: 28px;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.modal-header i {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.modal-close {
+    position: absolute;
+    top: -1px;
+    right: 0;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.modal-gallery {
+    display: grid;
+    grid-template-columns: repeat(5, 78px);
+    grid-auto-rows: 104px;
+    column-gap: 8px;
+    row-gap: 30px;
+    width: fit-content;
+    margin: 0 auto 50px auto;
+}
+
+.modal-gallery figure {
+    position: relative;
+    width: 78px;
+    height: 104px;
+}
+
+.modal-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-footer {
+    margin-top: 80px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-footer::before {
+    content: "";
+    display: block;
+    width: 72%;
+    height: 1.5px;
+    background-color: #ccc;
+    margin: 0 auto 35px auto; /* centré + espace en bas */
+}
+
+.add-photo-btn {
+    background-color: #1D6154;
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 50px;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.add-photo-btn:hover {
+    background-color: #0E3B32; /* vert plus sombre */
+}
+
+.delete-work-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background: black;
+    border: none;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0;
+}
+
+.delete-work-btn i {
+    color: white;
+    font-size: 12px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Switch vers formulaire Ajout Photo */
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.modal-form h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btn-back {
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1;
+    cursor: pointer;
+    color: #000;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.upload-zone {
+    background-color: #E8F1F6;
+    border-radius: 3px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.upload-zone i {
+    font-size: 60px;
+    color: #B9C5CC;
+    margin-bottom: 10px;
+}
+
+.upload-btn {
+    background-color: #CBD6DC;
+    color: #306685;
+    padding: 10px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 500;
+}
+
+#photo-input {
+    display: none;
+}
+
+.upload-info {
+    font-size: 12px;
+    color: #6A6A6A;
+    margin-top: 10px;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+}
+
+#preview-image {
+    max-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.modal-form label {
+    font-size: 14px;
+    margin-bottom: 3px;
+    display: block;
+}
+
+.modal-form input,
+.modal-form select {
+    width: 100%;
+    padding: 18px 0px;
+    border: none;
+    background-color: #fff;
+    font-size: 14px;
+    font-family: 'Syne', sans-serif;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.08);
+    margin-top: 8px;
+    margin-bottom: 20px;
+    padding-left: 15px;
+}
+
+.validate-btn {
+    background-color: #A7A7A7;
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 90px;
+    border: none;
+    border-radius: 60px;
+    cursor: not-allowed;
+    display: block;
+    margin: 40px auto 30px auto;
+    transition: background-color 0.2s ease;
+}
+
+.validate-btn.active {
+    background-color: #1D6154;
+    cursor: pointer;
+}
+
+.validate-btn:enabled {
+    background-color: #1D6154;
+    color: white;
+    cursor: pointer;
+}
+
+.form-separator {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background-color: #ccc;
+    margin: 30px auto;
+}

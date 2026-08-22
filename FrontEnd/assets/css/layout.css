@@ -20,7 +20,7 @@ header {
 }
 
 section {
-	margin: 50px 0
+	margin: 50px 0;
 }
 
 h1 {
@@ -36,7 +36,7 @@ h1 > span {
 	font-family: 'Work Sans';
 	font-size: 10px;
 	font-weight: 400;
-	letter-spacing: 0.1em;
+	letter-spacing: 1px;
 	margin-top: 8px;
 }
 
@@ -77,8 +77,6 @@ nav a {
 
 nav ul li a.active {
 	font-weight: 700;
-	color: #1D6154;
-	text-decoration: underline;
 }
 
 /* Footer */

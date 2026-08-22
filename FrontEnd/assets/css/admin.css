@@ -26,6 +26,8 @@
 .edit-button span {
     position: relative;
     top: 2px; /* ⭐ descend légèrement le texte */
+	font-size: 15px;
+	font-weight: 400;
 }
 
 .edit-button i {
