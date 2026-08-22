@@ -289,7 +289,8 @@ function createModal() {
         })
         //** ETAPE 8.2 : AFFICHER DYNAMIQUEMENT LA NOUVELLE IMAGE DE LA MODALE **//
             .then(newWork => {
-        console.log("Projet ajouté :", newWork);
+        // console.log("Projet ajouté :", newWork);
+        alert ("Nouveau projet envoyé avec succès !")
 
         // Ajout dynamique dans la galerie principale
         addWorkToGallery(newWork);
@@ -374,7 +375,8 @@ async function deleteWork(id, figure) {
     });
 
     if (response.ok) {
-        console.log("Suppression réussie !");
+        // console.log("Suppression réussie !");
+        alert ("Suppression du projet réussie !");
 
         // Supprimer dans la modale
         figure.remove();
@@ -385,7 +387,7 @@ async function deleteWork(id, figure) {
             mainFigure.remove();
         }
     } else {
-        console.error("Échec de la suppresssion :", response.status);
+        console.error("Échec de la suppression :", response.status);
     }
 }
 
